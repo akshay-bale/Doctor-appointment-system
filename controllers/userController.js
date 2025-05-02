@@ -6,7 +6,12 @@ const Appointment = require("../models/appointmentModel");
 
 const getuser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id).select("-password");
+    const userDoc = await User.findById(req.params.id).select("-password");
+    const user = userDoc.toObject()
+    const doctor = await Doctor.findOne({userId: req.params.id})
+    console.log("is he a doctor: ",doctor)
+    user.isAvailable = doctor?.isDoctor ? doctor.isAvailable : null
+    console.log("this user was requsted: ",user)
     return res.send(user);
   } catch (error) {
     res.status(500).send("Unable to get user");
@@ -18,6 +23,7 @@ const getallusers = async (req, res) => {
     const users = await User.find()
       .find({ _id: { $ne: req.locals } })
       .select("-password");
+      // console.log(users)
     return res.send(users);
   } catch (error) {
     res.status(500).send("Unable to get all users");
@@ -26,6 +32,7 @@ const getallusers = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log("login hit")
     const emailPresent = await User.findOne({ email: req.body.email });
     if (!emailPresent) {
       return res.status(400).send("Incorrect credentials");
@@ -37,6 +44,7 @@ const login = async (req, res) => {
     if (!verifyPass) {
       return res.status(400).send("Incorrect credentials");
     }
+    console.log("checking")
     const token = jwt.sign(
       { userId: emailPresent._id, isAdmin: emailPresent.isAdmin },
       process.env.JWT_SECRET,
@@ -52,6 +60,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
+    console.log("register hit")
     const emailPresent = await User.findOne({ email: req.body.email });
     if (emailPresent) {
       return res.status(400).send("Email already exists");
@@ -75,11 +84,26 @@ const updateprofile = async (req, res) => {
       { _id: req.locals },
       { ...req.body, password: hashedPass }
     );
+    console.log("doc before update: ", result)
+    console.log("updateprofile hit userprofile:",req.body)
+    console.log("updateprofile hit isavailable:",req.body?.isAvailable)
+    if("isAvailable" in req.body){
+      const doctor = await Doctor.findOne({ userId: req.locals });
+      if (!doctor) {
+        return res.status(404).json({ message: "Doctor not found" });
+      }
+      // Manually update a field
+      doctor.isAvailable = req.body.isAvailable; // or any value you need
+      await doctor.save();
+      console.log("doctor toggle changed")
+    }
+    console.log(req.body)
     if (!result) {
       return res.status(500).send("Unable to update user");
     }
     return res.status(201).send("User updated successfully");
   } catch (error) {
+    console.log(error)
     res.status(500).send("Unable to update user");
   }
 };

@@ -17,7 +17,8 @@ const Users = () => {
   const getAllUsers = async (e) => {
     try {
       dispatch(setLoading(true));
-      const temp = await fetchData(`/user/getallusers`);
+      const temp = await fetchData(`api/user/getallusers`);
+      console.log(temp)
       setUsers(temp);
       dispatch(setLoading(false));
     } catch (error) {}
@@ -28,7 +29,7 @@ const Users = () => {
       const confirm = window.confirm("Are you sure you want to delete?");
       if (confirm) {
         await toast.promise(
-          axios.delete("/user/deleteuser", {
+          axios.delete("api/user/deleteuser", {
             headers: {
               authorization: `Bearer ${localStorage.getItem("token")}`,
             },

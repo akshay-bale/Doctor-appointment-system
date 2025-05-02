@@ -25,19 +25,29 @@ function Profile() {
     address: "",
     password: "",
     confpassword: "",
+    isAvailable: false,
+    isDoctor: false
   });
+  const [isDoctor, setIsDoctor] = useState(false)
 
   const getUser = async () => {
     try {
       dispatch(setLoading(true));
-      const temp = await fetchData(`/user/getuser/${userId}`);
+      const temp = await fetchData(`api/user/getuser/${userId}`);
       setFormDetails({
         ...temp,
         password: "",
         confpassword: "",
         mobile: temp.mobile === null ? "" : temp.mobile,
         age: temp.age === null ? "" : temp.age,
+        isAvailable: temp.isDoctor ? temp.isAvailable : null
       });
+      console.log(temp.isDoctor)
+      console.log("doctor is available: ",temp.isAvailable)
+      setIsDoctor(temp.isDoctor)
+      if(temp.isDoctor){
+        setIsAvailable(temp.isAvailable)
+      }
       setFile(temp.pic);
       dispatch(setLoading(false));
     } catch (error) {}
@@ -55,6 +65,20 @@ function Profile() {
     });
   };
 
+  const [isAvailable, setIsAvailable] = useState(false)
+
+  const handleToggle = (e) => {
+    const { value } = e.target;
+    const newStatus = !isAvailable
+    setIsAvailable(newStatus)
+    // if (onStatusChange) {
+      return setFormDetails({
+        ...formDetails,
+        isAvailable: newStatus,
+      })
+    // }
+  }
+
   const formSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -68,7 +92,10 @@ function Profile() {
         gender,
         password,
         confpassword,
+        isAvailable
       } = formDetails;
+      
+      console.log("isAvailable: ", isAvailable)
 
       if (!email) {
         return toast.error("Email should not be empty");
@@ -83,7 +110,7 @@ function Profile() {
       }
       await toast.promise(
         axios.put(
-          "/user/updateprofile",
+          "api/user/updateprofile",
           {
             firstname,
             lastname,
@@ -93,6 +120,7 @@ function Profile() {
             gender,
             email,
             password,
+            isAvailable
           },
           {
             headers: {
@@ -131,6 +159,28 @@ function Profile() {
               onSubmit={formSubmit}
               className="register-form"
             >
+              {isDoctor ?
+              <div className="availability-toggle">
+              <span className="toggle-label">Availability Status</span>
+              <div className="switch-container">
+                <label className="switch" htmlFor="availability-toggle">
+                  <input
+                    type="checkbox"
+                    id="availability-toggle"
+                    aria-label="Toggle availability status"
+                    checked={isAvailable}
+                    onChange={handleToggle}
+                    value={formDetails.isAvailable}
+                    name="toggle"
+                  />
+                  <span className="slider" aria-hidden="true"></span>
+                </label>
+                <span className={`status-text ${isAvailable ? "status-available" : "status-unavailable"}`}>
+                  {isAvailable ? "Available" : "Unavailable"}
+                </span>
+              </div>
+              </div> : console.log(isAvailable) }
+              
               <div className="form-same-row">
                 <input
                   type="text"

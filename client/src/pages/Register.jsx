@@ -29,17 +29,19 @@ function Register() {
   const onUpload = async (element) => {
     setLoading(true);
     if (element.type === "image/jpeg" || element.type === "image/png") {
+      console.log("uploading...")
       const data = new FormData();
       data.append("file", element);
       data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
       data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
-      fetch(process.env.REACT_APP_CLOUDINARY_BASE_URL, {
+      fetch("https://api.cloudinary.com/v1_1/dhs4q3huk/image/upload", {
         method: "POST",
         body: data,
       })
         .then((res) => res.json())
         .then((data) => setFile(data.url.toString()));
       setLoading(false);
+      console.log("uploaded")
     } else {
       setLoading(false);
       toast.error("Please select an image in jpeg or png format");
@@ -50,8 +52,8 @@ function Register() {
     try {
       e.preventDefault();
 
-      if (loading) return;
-      if (file === "") return;
+      // if (loading) return;
+      // if (file === "") return;
 
       const { firstname, lastname, email, password, confpassword } =
         formDetails;
@@ -68,7 +70,7 @@ function Register() {
       }
 
       await toast.promise(
-        axios.post("/user/register", {
+        axios.post("http://localhost:5000/api/user/register", {
           firstname,
           lastname,
           email,
@@ -118,13 +120,13 @@ function Register() {
             value={formDetails.email}
             onChange={inputChange}
           />
-          <input
+          {/* {<input
             type="file"
             onChange={(e) => onUpload(e.target.files[0])}
             name="profile-pic"
             id="profile-pic"
             className="form-input"
-          />
+          />} */}
           <input
             type="password"
             name="password"

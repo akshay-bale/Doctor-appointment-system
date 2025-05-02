@@ -5,15 +5,23 @@ const Appointment = require("../models/appointmentModel");
 
 const getalldoctors = async (req, res) => {
   try {
+    console.log("getalldoctors hit")
+    console.log("req.locals: ",req.locals)
     let docs;
     if (!req.locals) {
       docs = await Doctor.find({ isDoctor: true }).populate("userId");
+      console.log("This")
+      console.log(docs)
     } else {
       docs = await Doctor.find({ isDoctor: true })
         .find({
           _id: { $ne: req.locals },
         })
         .populate("userId");
+      console.log("That")
+      console.log(docs)
+        const resp = await Doctor.find({ isDoctor: true })
+        console.log(resp)
     }
 
     return res.send(docs);

@@ -13,7 +13,7 @@ const ApplyDoctor = () => {
   const [formDetails, setFormDetails] = useState({
     specialization: "",
     experience: "",
-    fees: "",
+    fees: ""
   });
 
   const inputChange = (e) => {
@@ -29,7 +29,7 @@ const ApplyDoctor = () => {
     try {
       await toast.promise(
         axios.post(
-          "/doctor/applyfordoctor",
+          "api/doctor/applyfordoctor",
           {
             formDetails,
           },

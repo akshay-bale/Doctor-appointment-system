@@ -23,6 +23,10 @@ const schema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isAvailable: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true,
