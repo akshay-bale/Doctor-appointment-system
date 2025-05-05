@@ -11,9 +11,7 @@ const Hero = () => {
           Our Responsibility
         </h1>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-          tenetur doloremque molestias repellat minus asperiores in aperiam
-          dolor, quaerat praesentium.
+        Health is the greatest wealth. With timely care, expert guidance, and easy access to support, staying healthy becomes simpler and more empowering. We're here to help you take control of your well-being—every step of the way.
         </p>
       </div>
       <div className="hero-img">

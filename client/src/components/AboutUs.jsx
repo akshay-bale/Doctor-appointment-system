@@ -1,5 +1,6 @@
 import React from "react";
-import image from "../images/aboutimg.jpg";
+import image from "../images/aboutus-doctor.png";
+import "../styles/hero.css"
 
 const AboutUs = () => {
   return (
@@ -14,14 +15,7 @@ const AboutUs = () => {
             />
           </div>
           <div className="hero-content">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Quibusdam tenetur doloremque molestias repellat minus asperiores
-              in aperiam dolor, quaerat praesentium. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Voluptatibus, repudiandae! Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Provident
-              quibusdam doloremque ex? Officia atque ab dolore? Tempore totam
-              non ea!
+            <p>We believe that everyone deserves easy access to compassionate, expert healthcare. Our mission is to make your journey to better health simple, safe, and personalized. With a dedicated team of professionals and a patient-first approach, we're here to support your well-being every step of the way. Because your health isn't just our priority — it's our promise.
             </p>
           </div>
         </div>

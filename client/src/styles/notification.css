@@ -12,3 +12,7 @@
 .disable-btn:hover {
   background-color: rgba(0, 128, 0, 0.528) !important;
 }
+
+.container {
+  margin-bottom: 200px;
+}

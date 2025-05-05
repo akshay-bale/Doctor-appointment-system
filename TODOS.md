@@ -8,3 +8,4 @@
 [x] 6) add gender in user form on admin page
 [x] 7) if doctor is unavailable remove book appointment button
 [x] 8) can remove notification from patient page
+[] 9) delete notifications model from mongodb

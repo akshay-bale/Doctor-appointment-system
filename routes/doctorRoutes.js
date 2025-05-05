@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 
 const doctorRouter = express.Router();
 
-doctorRouter.get("/getalldoctors",auth, doctorController.getalldoctors);
+doctorRouter.get("/getalldoctors", doctorController.getalldoctors);
 
 doctorRouter.get("/getnotdoctors", auth, doctorController.getnotdoctors);
 

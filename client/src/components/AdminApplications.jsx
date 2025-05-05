@@ -97,7 +97,7 @@ const AdminApplications = () => {
                 <thead>
                   <tr>
                     <th>S.No</th>
-                    <th>Pic</th>
+                    {/* <th>Pic</th> */}
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -113,7 +113,7 @@ const AdminApplications = () => {
                     return (
                       <tr key={ele?._id}>
                         <td>{i + 1}</td>
-                        <td>
+                        {/* <td>
                           <img
                             className="user-table-pic"
                             src={
@@ -122,7 +122,7 @@ const AdminApplications = () => {
                             }
                             alt={ele?.userId?.firstname}
                           />
-                        </td>
+                        </td> */}
                         <td>{ele?.userId?.firstname}</td>
                         <td>{ele?.userId?.lastname}</td>
                         <td>{ele?.userId?.email}</td>

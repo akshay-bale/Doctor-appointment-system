@@ -50,17 +50,11 @@ const Navbar = () => {
               <li>
                 <NavLink to={"/appointments"}>Appointments</NavLink>
               </li>
-              {/* <li>
-                <NavLink to={"/notifications"}>Notifications</NavLink>
-              </li> */}
               {!user.isDoctor && (
               <li>
                 <NavLink to={"/applyfordoctor"}>Apply for doctor</NavLink>
               </li>
               )}
-              {/* <li>
-                <HashLink to={"/#contact"}>Contact Us</HashLink>
-              </li> */}
               <li>
                 <NavLink to={"/profile"}>Profile</NavLink>
               </li>

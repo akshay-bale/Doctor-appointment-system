@@ -22,9 +22,6 @@ const Footer = () => {
                 <NavLink to={"/appointments"}>Appointments</NavLink>
               </li>
               <li>
-                <NavLink to={"/notifications"}>Notifications</NavLink>
-              </li>
-              <li>
                 <HashLink to={"/#contact"}>Contact Us</HashLink>
               </li>
               <li>
@@ -68,11 +65,10 @@ const Footer = () => {
         <div className="footer-bottom">
           Made by{" "}
           <a
-            href="https://www.linkedin.com/in/dunna-avinash"
             target="_blank"
             rel="noreferrer"
           >
-            Avinash
+            Akshay
           </a>{" "}
           © {new Date().getFullYear()}
         </div>
