@@ -46,7 +46,7 @@ const login = async (req, res) => {
     }
     console.log("checking")
     const token = jwt.sign(
-      { userId: emailPresent._id, isAdmin: emailPresent.isAdmin },
+      { userId: emailPresent._id, isAdmin: emailPresent.isAdmin, isDoctor: emailPresent.isDoctor },
       process.env.JWT_SECRET,
       {
         expiresIn: "2 days",
@@ -87,7 +87,7 @@ const updateprofile = async (req, res) => {
     console.log("doc before update: ", result)
     console.log("updateprofile hit userprofile:",req.body)
     console.log("updateprofile hit isavailable:",req.body?.isAvailable)
-    if("isAvailable" in req.body){
+    if("isDoctor" in req.body && req.body.isDoctor){
       const doctor = await Doctor.findOne({ userId: req.locals });
       if (!doctor) {
         return res.status(404).json({ message: "Doctor not found" });
