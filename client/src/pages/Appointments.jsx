@@ -10,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "../styles/user.css";
+import "../styles/notification.css"
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);

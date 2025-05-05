@@ -30,6 +30,13 @@
   margin: 1rem auto;
 }
 
+.availability-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+}
+
 .card p {
   width: 100%;
 }

@@ -8,6 +8,7 @@
   --bold-text-color: #1e375a;
   --light-text-color: rgba(30, 55, 90, 0.7);
   --font-family: "Poppins", sans-serif;
+  --light-gray: #808080;
 }
 
 * {
@@ -80,6 +81,10 @@ p {
   border-radius: 5px;
   cursor: pointer;
   font-family: var(--font-family);
+}
+
+.btn-disable {
+  background-color: var(--light-gray);
 }
 
 .btn:hover {

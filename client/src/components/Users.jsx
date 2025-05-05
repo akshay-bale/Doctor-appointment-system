@@ -66,7 +66,7 @@ const Users = () => {
                 <thead>
                   <tr>
                     <th>S.No</th>
-                    <th>Pic</th>
+                    {/* <th>Pic</th> */}
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -82,13 +82,13 @@ const Users = () => {
                     return (
                       <tr key={ele?._id}>
                         <td>{i + 1}</td>
-                        <td>
+                        {/* <td>
                           <img
                             className="user-table-pic"
                             src={ele?.pic}
                             alt={ele?.firstname}
                           />
-                        </td>
+                        </td> */}
                         <td>{ele?.firstname}</td>
                         <td>{ele?.lastname}</td>
                         <td>{ele?.email}</td>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/notification.css";
-import Empty from "../components/Empty";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Empty from "./Empty";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 import fetchData from "../helper/apiCall";
 import { setLoading } from "../redux/reducers/rootSlice";
-import Loading from "../components/Loading";
+import Loading from "./Loading";
 import "../styles/user.css";
 
 const Notifications = () => {

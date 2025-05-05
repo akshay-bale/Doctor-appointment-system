@@ -43,31 +43,34 @@ const DoctorCard = ({ ele }) => {
         <strong>Phone: </strong>
         {ele?.userId?.mobile}
       </p>
-      <p className="availability">
+      <p className="availability-tag">
         {/* Green if available, red if not — replace `true` with your dynamic check */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          viewBox="0 0 24 24"
-          fill={ele?.isAvailable ? "green" : "red"} // dynamically change based on availability
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="lucide lucide-dot-icon"
-        >
-          <circle cx="12.1" cy="12.1" r="4" />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill={ele?.isAvailable ? "green" : "red"} // dynamically change based on availability
+            stroke="currentColor"
+            strokeWidth="0"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="lucide lucide-dot-icon"
+          >
+            <circle cx="12.1" cy="12.1" r="4" />
+          </svg>
+
+        <div>
         {ele?.isAvailable ? "Available" : "Unavailable"}
+        </div>
       </p>
 
-      <button
+      {ele?.isAvailable ? <button
         className="btn appointment-btn"
         onClick={handleModal}
       >
         Book Appointment
-      </button>
+      </button> : null}
       {modalOpen && (
         <BookAppointment
           setModalOpen={setModalOpen}

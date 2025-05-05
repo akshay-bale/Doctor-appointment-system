@@ -12,7 +12,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Appointments = lazy(() => import("./pages/Appointments"));
 const Doctors = lazy(() => import("./pages/Doctors"));
 const Profile = lazy(() => import("./pages/Profile"));
-const Notifications = lazy(() => import("./pages/Notifications"));
+// const Notifications = lazy(() => import("./pages/Notifications"));
 const ApplyDoctor = lazy(() => import("./pages/ApplyDoctor"));
 const Error = lazy(() => import("./pages/Error"));
 
@@ -50,14 +50,14 @@ function App() {
               </Protected>
             }
           />
-          <Route
+          {/* <Route
             path="/notifications"
             element={
               <Protected>
                 <Notifications />
               </Protected>
             }
-          />
+          /> */}
           <Route
             path="/applyfordoctor"
             element={

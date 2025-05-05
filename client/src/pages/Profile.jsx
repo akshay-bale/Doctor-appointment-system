@@ -120,7 +120,8 @@ function Profile() {
             gender,
             email,
             password,
-            isAvailable
+            isAvailable,
+            isDoctor
           },
           {
             headers: {
@@ -150,11 +151,11 @@ function Profile() {
         <section className="register-section flex-center">
           <div className="profile-container flex-center">
             <h2 className="form-heading">Profile</h2>
-            <img
+            {/* <img
               src={file}
               alt="profile"
               className="profile-pic"
-            />
+            /> */}
             <form
               onSubmit={formSubmit}
               className="register-form"
@@ -238,7 +239,7 @@ function Profile() {
                   onChange={inputChange}
                 />
               </div>
-              <textarea
+              <input
                 type="text"
                 name="address"
                 className="form-input"
@@ -246,7 +247,7 @@ function Profile() {
                 value={formDetails.address}
                 onChange={inputChange}
                 rows="2"
-              ></textarea>
+              ></input>
               <div className="form-same-row">
                 <input
                   type="password"

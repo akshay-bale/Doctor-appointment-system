@@ -19,6 +19,8 @@ const Navbar = () => {
       : ""
   );
 
+  console.log(user)
+
   const logoutFunc = () => {
     dispatch(setUserInfo({}));
     localStorage.removeItem("token");
@@ -48,15 +50,17 @@ const Navbar = () => {
               <li>
                 <NavLink to={"/appointments"}>Appointments</NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to={"/notifications"}>Notifications</NavLink>
-              </li>
+              </li> */}
+              {!user.isDoctor && (
               <li>
                 <NavLink to={"/applyfordoctor"}>Apply for doctor</NavLink>
               </li>
-              <li>
+              )}
+              {/* <li>
                 <HashLink to={"/#contact"}>Contact Us</HashLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink to={"/profile"}>Profile</NavLink>
               </li>
