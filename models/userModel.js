@@ -42,6 +42,10 @@ const schema = mongoose.Schema(
       type: Number,
       default: "",
     },
+    phoneVerified: {
+      type: Boolean,
+      default: false,
+    },
     address: {
       type: String,
       default: "",

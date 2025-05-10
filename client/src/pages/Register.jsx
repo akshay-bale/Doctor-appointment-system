@@ -13,6 +13,7 @@ function Register() {
     firstname: "",
     lastname: "",
     email: "",
+    mobile: "",
     password: "",
     confpassword: "",
   });
@@ -55,9 +56,9 @@ function Register() {
       // if (loading) return;
       // if (file === "") return;
 
-      const { firstname, lastname, email, password, confpassword } =
+      const { firstname, lastname, email, mobile, password, confpassword } =
         formDetails;
-      if (!firstname || !lastname || !email || !password || !confpassword) {
+      if (!firstname || !lastname || !email || !password || !confpassword || !mobile) {
         return toast.error("Input field should not be empty");
       } else if (firstname.length < 3) {
         return toast.error("First name must be at least 3 characters long");
@@ -67,16 +68,21 @@ function Register() {
         return toast.error("Password must be at least 5 characters long");
       } else if (password !== confpassword) {
         return toast.error("Passwords do not match");
+      }else if(mobile.length !== 10){
+        return toast.error("mobile No. should be atleast 10 numbers long")
       }
 
-      await toast.promise(
-        axios.post("http://localhost:5000/api/user/register", {
+      await toast.promise( (async() => {
+        const {data} = await axios.post("http://localhost:5000/api/user/register", {
           firstname,
           lastname,
           email,
+          mobile,
           password,
           pic: file,
-        }),
+        })
+        localStorage.setItem("phone", data.phone);
+        })(),
         {
           pending: "Registering user...",
           success: "User registered successfully",
@@ -84,7 +90,7 @@ function Register() {
           loading: "Registering user...",
         }
       );
-      return navigate("/login");
+      return navigate("/verify");
     } catch (error) {}
   };
 
@@ -118,6 +124,14 @@ function Register() {
             className="form-input"
             placeholder="Enter your email"
             value={formDetails.email}
+            onChange={inputChange}
+          />
+          <input
+            type="phone"
+            name="mobile"
+            className="form-input"
+            placeholder="Enter your phone"
+            value={formDetails.mobile}
             onChange={inputChange}
           />
           {/* {<input

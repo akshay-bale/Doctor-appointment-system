@@ -15,4 +15,6 @@ userRouter.put("/updateprofile", auth, userController.updateprofile);
 
 userRouter.delete("/deleteuser", auth, userController.deleteuser);
 
+userRouter.post("/verifyotp", userController.verify)
+
 module.exports = userRouter;

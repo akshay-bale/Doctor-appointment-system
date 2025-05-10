@@ -48,6 +48,10 @@ function Login() {
           loading: "Logging user...",
         }
       );
+      if(!data.token){
+        localStorage.setItem("phone", data.phone)
+        return navigate("/verify")
+      }
       localStorage.setItem("token", data.token);
       dispatch(setUserInfo(jwt_decode(data.token).userId));
       getUser(jwt_decode(data.token).userId);

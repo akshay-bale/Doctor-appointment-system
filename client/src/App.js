@@ -2,6 +2,7 @@ import "./styles/app.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import OTPVerification from "./pages/OTPVerification";
 import { Toaster } from "react-hot-toast";
 import { Protected, Public, Admin } from "./middleware/route";
 import React, { lazy, Suspense } from "react";
@@ -48,6 +49,13 @@ function App() {
               <Protected>
                 <Appointments />
               </Protected>
+            }/>
+          <Route
+            path="/verify"
+            element={
+              // <Protected>
+                <OTPVerification />
+              // </Protected>
             }
           />
           {/* <Route
